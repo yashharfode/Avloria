@@ -1,0 +1,14 @@
+[
+    {
+        "name": "Chanderi",
+        "description": "Ancient town famous for its fort and handwoven sarees.",
+        "image": "https://thumbs.dreamstime.com/b/muktagiri-jain-temple-muktagiri-jain-pilgrimage-centre-madhya-pradesh-india-muktagiri-jain-temple-187931119.jpg",
+        "rating": 4.5
+    },
+    {
+        "name": "Pachmarhi",
+        "description": "Hill station with waterfalls, caves, and lush greenery.",
+        "image": "https://thumbs.dreamstime.com/b/muktagiri-jain-temple-muktagiri-jain-pilgrimage-centre-madhya-pradesh-india-muktagiri-jain-temple-187931119.jpg",
+        "rating": 4.8
+    }
+]

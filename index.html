@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Avaloria - Discover Beautiful Destinations</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+
+</head>
+
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container header-container">
+            <a href="#" class="logo"><i class="fas fa-globe-americas"></i> Avaloria</a>
+
+            <button class="menu-toggle" id="menuToggle">
+                <i class="fas fa-bars"></i>
+            </button>
+
+            <nav>
+                <ul id="navMenu">
+                    <li><a href="#">Home</a></li>
+                    <li><a href="/whishlist/wishlist.html">Whishlist</a></li>
+                    <li><a href="#">Culture</a></li>
+                    <li><a href="#">Gallery</a></li>
+                    <li><a href="#">FAQ</a></li>
+                    <li><a href="#">Contact</a></li>
+                </ul>
+            </nav>
+
+            <div class="nav-btns" id="authLinks">
+                <a href="auth.html" class="btn btn-outline">Sign In</a>
+                <a href="auth.html" class="btn">Sign Up</a>
+            </div>
+
+            <button id="signOutBtn" class="btn btn-outline" style="display: none;">Sign Out</button>
+
+
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container hero-content">
+            <h2>Discover The Beautiful World</h2>
+            <p>Explore the most beautiful places around the world with our curated travel experiences. Adventure awaits,
+                what are you waiting for?</p>
+            <div class="hero-btns">
+                <a href="#" class="btn">Explore Now</a>
+                <a href="#" id="watch-btn" class="btn btn-outline ">Watch Video <i class="fas fa-play-circle"></i></a>
+            </div>
+
+            <div class="search-box">
+                <input type="text" placeholder="Search for destinations, activities...">
+                <button>Search</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Places Section -->
+    <section class="places">
+        <div class="section-title">
+            <h2>Hidden Gems of the Madhya Pradesh</h2>
+            <p>Discover the most beautiful places in the Madhya Pradesh</p>
+        </div>
+        <!-- Filter of Places by Type -->
+        <div class="places-filter container">
+            <button class="filter-btn active" data-category="All">All</button>
+            <button class="filter-btn" data-category="Historical">Historical</button>
+            <button class="filter-btn" data-category="Adventure">Adventure</button>
+            <button class="filter-btn" data-category="Beaches">Beaches</button>
+            <button class="filter-btn" data-category="Cities">Cities</button>
+        </div>
+
+        <div class="places-grid container" id="placesGrid">
+            <!-- JS will render cards here -->
+        </div>
+        <!-- <section class="hidden-places">
+    <div class="container section-title">
+        <h2>Hidden Gems of Madhya Pradesh</h2>
+        <p>Discover secret and less explored places in Madhya Pradesh</p>
+    </div>
+
+    <div class="container places-grid">
+       
+    </div>
+</section> -->
+
+    </section>
+
+    
+    <!-- District Filter Comming Soon -->
+
+
+    <!-- Features Section -->
+    <!-- Features Section -->
+<section class="features">
+    <div class="container">
+        <div class="section-title">
+            <h2>Why Choose Us</h2>
+            <p>We offer the best experience for our travelers, rooted in authenticity and discovery.</p>
+        </div>
+
+        <div class="features-grid">
+            <div class="feature-box">
+                <i class="fas fa-map"></i>
+                <h3>Curated Destinations</h3>
+                <p>Explore handpicked hidden gems—from serene nature trails to heritage sites across Madhya Pradesh and beyond.</p>
+            </div>
+
+            <div class="feature-box">
+                <i class="fas fa-user-friends"></i>
+                <h3>Local & Less Crowded</h3>
+                <p>Discover peaceful spots away from tourist rush, while supporting local communities and authentic experiences.</p>
+            </div>
+
+            <div class="feature-box">
+                <i class="fas fa-binoculars"></i>
+                <h3>Sights Worth Seeing</h3>
+                <p>From ancient architecture to scenic landscapes, we guide you to places that truly leave a mark.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+    <!-- Testimonials -->
+    <section class="testimonials">
+        <div class="container">
+            <div class="section-title">
+                <h2>What Our Travelers Say</h2>
+                <p>Authentic experiences from our community</p>
+            </div>
+
+            <div class="testimonials-grid">
+                <div class="testimonial-card">
+                    <div class="testimonial-text">
+                        <p>“Exploring destinations through this site was such a smooth experience! The information is clear, and I love how they highlight hidden gems like Sanchi Stupa. It really helps in planning trips easily.”</p>
+                    </div>
+                    <div class="testimonial-author">
+                        <img src="https://th.bing.com/th/id/OIP.Vb_8F2fqr4OsPgLenCQwGQAAAA?o=7rm=3&rs=1&pid=ImgDetMain&o=7&rm=3" alt="Sarah Johnson">
+                        <div class="author-info">
+                            <h4>Ananya Sharma</h4>
+                            <p>Adventure Traveler</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="testimonial-card">
+                    <div class="testimonial-text">
+                        <p>“This website makes travel planning so simple! The categories like historical, adventure, and beaches saved me so much time. I especially liked how each destination has ratings and quick details.”</p>
+                    </div>
+                    <div class="testimonial-author">
+                        <img src="https://randomuser.me/api/portraits/men/86.jpg" alt="Michael Chen">
+                        <div class="author-info">
+                            <h4>Rohan Mehta</h4>
+                            <p>Luxury Traveler</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="testimonial-card">
+                    <div class="testimonial-text">
+                        <p>“I’ve tried many travel websites, but this one stands out. The layout is modern, details reliable, and the ‘Wishlist’ option makes it exciting to collect destinations. I’ll return whenever I plan my next journey!”</p>
+                    </div>
+                    <div class="testimonial-author">
+                        <img src="https://randomuser.me/api/portraits/women/8.jpg" alt="Jessica Williams">
+                        <div class="author-info">
+                            <h4>Priya Verma</h4>
+                            <p>Cultural Explorer</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Newsletter -->
+    <section class="newsletter">
+        <div class="container newsletter-content">
+            <h2>Subscribe to Our Newsletter</h2>
+            <p>Get the latest travel deals, tips, and exclusive offers straight to your inbox.</p>
+
+            <form class="newsletter-form">
+                <input type="email" placeholder="Enter your email address">
+                <button>Subscribe</button>
+            </form>
+        </div>
+        <!-- Hidden Video Section -->
+        <div class="video" id="videoPopup" style="display:none;">
+            <div class="video-container">
+                <span id="closeBtn" class="close-btn">&times;</span>
+                <iframe id="ytPlayer" width="560" height="315"
+                    src="https://www.youtube.com/embed/YR4h_SiIWHs"
+                    frameborder="0" allow="autoplay; encrypted-media" allowfullscreen>
+                </iframe>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <h3>Avaloria</h3>
+                    <p>Discover the world with our curated travel experiences. Adventure awaits, what are you waiting
+                        for?</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-pinterest"></i></a>
+                    </div>
+                </div>
+
+                <div class="footer-col">
+                    <h3>Destinations</h3>
+                    <ul>
+                        <li><a href="#">Bhopal</a></li>
+                        <li><a href="#">Indore</a></li>
+                        <li><a href="#">Chhindwara</a></li>
+                        <li><a href="#">Rewa</a></li>
+                        <li><a href="#">Panna</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-col">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="#">About Us</a></li>
+                        <li><a href="#">Contact Us</a></li>
+                        <li><a href="#">Travel Guides</a></li>
+                        <li><a href="#">Privacy Policy</a></li>
+                        <li><a href="#">Terms & Conditions</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-col">
+                    <h3>Contact Info</h3>
+                    <ul>
+                        <li><i class="fas fa-map-marker-alt"></i> SATI Campus, Vidsha</li>
+                        <li><i class="fas fa-phone"></i> +91 9993788336</li>
+                        <li><i class="fas fa-envelope"></i> info.avaloria@gmail.com</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="copyright">
+                <p>&copy; 2025 Avaloria. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+    <script type="module" src="index-auth.js"></script>
+    <script src="script.js"></script>
+</body>
+
+</html>

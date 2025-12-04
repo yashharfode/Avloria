@@ -1,0 +1,234 @@
+body {
+  font-family: Arial, sans-serif;
+  line-height: 1.6;
+  background: #f8f9fa;
+  color: #333;
+  margin: 0;
+}
+
+.container {
+  max-width: 1100px;
+  margin: auto;
+  padding: 40px 20px;
+}
+
+.place-hero {
+  height: 360px;
+  border-radius: 16px;
+  margin-bottom: 30px;
+  position: relative;
+  background-size: cover;
+  background-position: center;
+  box-shadow: 0 6px 18px rgba(0,0,0,0.2);
+}
+
+.place-hero .overlay {
+  position: absolute;
+  bottom: 20px;
+  left: 20px;
+  background: rgba(0,0,0,0.55);
+  padding: 14px 20px;
+  border-radius: 10px;
+  color: #fff;
+}
+
+.place-hero h1 {
+  margin: 0;
+  font-size: 2rem;
+}
+
+.rating i {
+  color: gold;
+  margin-right: 3px;
+}
+
+.place-layout {
+  display: grid;
+  grid-template-columns: 1fr 350px;
+  gap: 35px;
+}
+
+.place-layout section h2,
+.place-layout section h3 {
+  margin-top: 0;
+  margin-bottom: 12px;
+  color: #333;
+}
+
+.gallery {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px,1fr));
+  gap: 12px;
+}
+
+.gallery img {
+  width: 100%;
+  height: 120px;
+  object-fit: cover;
+  border-radius: 8px;
+  transition: transform 0.3s ease;
+}
+
+.gallery img:hover {
+  transform: scale(1.05);
+}
+
+aside {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+aside .details-box {
+  background: #fff;
+  padding: 18px;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+
+aside iframe {
+  border: none;
+  border-radius: 12px;
+  width: 100%;
+  height: 250px;
+}
+
+.btn {
+  display: inline-block;
+  padding: 10px 16px;
+  background: #007bff;
+  color: white;
+  text-decoration: none;
+  border-radius: 6px;
+  margin-top: 10px;
+  transition: background 0.3s ease;
+}
+
+.btn:hover {
+  background: #0056b3;
+}
+
+
+.lightbox {
+  display: none;
+  position: fixed;
+  z-index: 9999;
+  padding-top: 60px;
+  left: 0; top: 0;
+  width: 100%; height: 100%;
+  background: rgba(0,0,0,0.9);
+}
+
+.lightbox-img {
+  margin: auto;
+  display: block;
+  max-width: 80%;
+  max-height: 80%;
+  border-radius: 8px;
+}
+
+.lightbox .close {
+  position: absolute;
+  top: 20px;
+  right: 40px;
+  font-size: 40px;
+  font-weight: bold;
+  color: #fff;
+  cursor: pointer;
+}
+
+.lightbox .prev,
+.lightbox .next {
+  cursor: pointer;
+  position: absolute;
+  top: 50%;
+  padding: 16px;
+  color: white;
+  font-size: 30px;
+  font-weight: bold;
+}
+
+.lightbox .prev { left: 20px; }
+.lightbox .next { right: 20px; }
+
+.lightbox .prev:hover,
+.lightbox .next:hover,
+.lightbox .close:hover {
+  color: #f1c40f;
+}
+
+
+/* Container for back button */
+
+
+.back-button-container .btn {
+    display: inline-block;
+    background-color: #007BFF;
+    color: #fff;
+    text-decoration: none;
+    padding: 12px 24px;
+    border-radius: 6px;
+    font-size: 1rem;
+    font-weight: 600;
+    transition: background-color 0.3s ease;
+}
+
+.back-button-container .btn:hover {
+    background-color: #0056b3;
+}
+
+/* Hero image section */
+.place-hero {
+    margin-top: 20px;
+    position: relative;
+    height: 400px;
+    background-size: cover;
+    background-position: center;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+}
+
+
+/* ------ */
+
+
+/* Gallery Videos */
+.gallery-video {
+    width: 100%;
+    max-height: 200px;
+    border-radius: 8px;
+    margin-bottom: 10px;
+}
+
+/* FAQ Section */
+.faq p {
+    background: #f9f9f9;
+    padding: 8px 12px;
+    border-radius: 6px;
+    margin-bottom: 8px;
+}
+
+/* Reviews Section */
+.reviews p {
+    padding: 6px 12px;
+    border-left: 3px solid #007BFF;
+    margin-bottom: 6px;
+}
+
+/* Wishlist Button */
+.wishlist-btn {
+    background-color: #fff;
+    color: #007BFF;
+    border: 2px solid #007BFF;
+    padding: 10px 20px;
+    border-radius: 6px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.25s ease;
+}
+.wishlist-btn:hover {
+    background-color: #007BFF;
+    color: #fff;
+}
+

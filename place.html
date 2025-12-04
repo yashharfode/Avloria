@@ -1,0 +1,194 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Place Details</title>
+  <link rel="stylesheet" href="place.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+
+<body>
+  <header>
+    <!-- Header code yahan -->
+  </header>
+
+  <main class="container" id="placeContent"></main>
+
+  <!-- Lightbox -->
+  <div id="lightbox" class="lightbox">
+    <span class="close">&times;</span>
+    <img class="lightbox-img" id="lightbox-img">
+    <a class="prev">&#10094;</a>
+    <a class="next">&#10095;</a>
+  </div>
+
+
+  <script>
+    async function loadPlace() {
+      const params = new URLSearchParams(window.location.search);
+      const id = params.get('id');
+      const container = document.getElementById('placeContent');
+
+      if (!id) {
+        container.innerHTML = '<p>Invalid place.</p>';
+        return;
+      }
+
+      try {
+        const res = await fetch('./places.json');
+        const places = await res.json();
+        const place = places.find(p => p.id === id);
+        if (!place) {
+          container.innerHTML = '<p>Place not found.</p>';
+          return;
+        }
+
+        container.innerHTML = `
+<div class="back-button-container">
+    <a href="index.html" class="btn back-btn">← Back to List</a>
+</div>
+
+<div class="place-hero" style="background-image:url('${place.images[0]}')">
+    <div class="overlay">
+        <h1>${place.title}</h1>
+        <div class="rating">
+            ${renderStars(place.rating)} <span>${place.rating.toFixed(1)} / 5</span>
+        </div>
+    </div>
+</div>
+
+<div class="place-layout">
+
+    <!-- Left Section - Main Content -->
+    <section>
+
+        <h2>About ${place.title}</h2>
+        <p>${place.long}</p>
+
+        <h3>Gallery & Videos</h3>
+        <div class="gallery">
+            ${place.images.map(img => `
+                <img src="${img}" alt="${place.title}" class="gallery-img" loading="lazy">
+            `).join('')}
+            ${place.videos ? place.videos.map(video => `
+                <video src="${video}" controls class="gallery-video"></video>
+            `).join('') : ''}
+        </div>
+
+        <h3>Features & Sights</h3>
+        <ul>
+            ${(place.features || []).map(f => `<li>${f}</li>`).join('')}
+        </ul>
+
+        <h3>History & Culture</h3>
+        <p>${place.history || 'Information not available'}</p>
+
+        <h3>Transportation</h3>
+        <p>${place.transportation || 'Information not available'}</p>
+
+        <h3>Best Time to Visit</h3>
+        <p>${place.bestTime || 'All year'}</p>
+
+        <h3>Travel Summary</h3>
+        <p>${place.summary || ''}</p>
+
+        <h3>Reviews</h3>
+        <div class="reviews">
+            ${(place.reviews || []).map(r => `<p>⭐ ${r.rating} - ${r.comment}</p>`).join('')}
+        </div>
+
+        // <h3>FAQ</h3>
+        // <div class="faq">
+        //     ${(place.faq || []).map(f => `<p><strong>Q:</strong> ${f.q} <br><strong>A:</strong> ${f.a}</p>`).join('')}
+        // </div>
+
+    </section>
+
+    <!-- Right Section - Details -->
+    <aside>
+        <div class="details-box">
+            <h3>Details</h3>
+            <ul style="list-style: none; padding: 0;">
+                <li><strong>District:</strong> ${place.district}</li>
+                <li><strong>Category:</strong> ${place.category}</li>
+                <li><strong>Badge:</strong> ${place.badge}</li>
+                <li><strong>Rating:</strong> ${place.rating.toFixed(1)} / 5</li>
+                <li><strong>Location:</strong> ${place.location}</li>
+                <li><strong>Culture:</strong> ${place.culture}</li>
+            </ul>
+        </div>
+
+        <iframe src="${place.map}" loading="lazy" style="width:100%; height:300px; border:none;"></iframe>
+
+        <button class="btn wishlist-btn" data-id="${place.id}">♡ Add to Wishlist</button>
+    </aside>
+
+</div>
+`;
+
+
+        initLightbox(place.images);  // ✅ Init lightbox after DOM is populated
+
+      } catch (err) {
+        console.error(err);
+        container.innerHTML = '<p>Could not load place details.</p>';
+      }
+
+      function renderStars(rating) {
+        let out = '';
+        const full = Math.floor(rating);
+        const half = (rating - full) >= 0.5;
+        for (let i = 0; i < full; i++) out += '<i class="fas fa-star"></i>';
+        if (half) out += '<i class="fas fa-star-half-alt"></i>';
+        const empty = 5 - full - (half ? 1 : 0);
+        for (let i = 0; i < empty; i++) out += '<i class="far fa-star"></i>';
+        return out;
+      }
+    }
+
+    document.addEventListener('DOMContentLoaded', loadPlace);
+
+    function initLightbox(images) {
+      const lightbox = document.getElementById("lightbox");
+      const lightboxImg = document.getElementById("lightbox-img");
+      const close = document.querySelector(".lightbox .close");
+      const prev = document.querySelector(".lightbox .prev");
+      const next = document.querySelector(".lightbox .next");
+
+      let currentIndex = 0;
+
+      function showImage(index) {
+        currentIndex = index;
+        lightbox.style.display = "block";
+        lightboxImg.src = images[index];
+      }
+
+      document.querySelectorAll(".gallery-img").forEach((img, i) => {
+        img.addEventListener("click", () => showImage(i));
+      });
+
+      close.onclick = () => (lightbox.style.display = "none");
+      prev.onclick = () => showImage((currentIndex - 1 + images.length) % images.length);
+      next.onclick = () => showImage((currentIndex + 1) % images.length);
+
+      document.addEventListener("keydown", (e) => {
+        if (lightbox.style.display === "block") {
+          if (e.key === "ArrowLeft") prev.onclick();
+          if (e.key === "ArrowRight") next.onclick();
+          if (e.key === "Escape") close.onclick();
+        }
+      });
+    }
+
+
+
+
+    player.src = player.src.split('?')[0]; // Ye hamesha URL ko reset karega
+
+  </script>
+  <script src="script.js"></script>
+</body>
+
+</html>

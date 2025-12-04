@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Avaloria - Authentication</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+    <style>
+        /* Auth Page Wrapper */
+.auth-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  background: linear-gradient(135deg, #fff5e6, #ffe0b3); /* Soft orange gradient */
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* Card Style */
+.auth-card {
+  background: #fff;
+  padding: 40px 30px;
+  border-radius: 14px;
+  box-shadow: 0 6px 28px rgba(0, 0, 0, 0.12);
+  width: 100%;
+  max-width: 400px;
+  text-align: center;
+  transition: transform 0.2s ease;
+}
+
+.auth-card:hover {
+  transform: translateY(-4px);
+}
+
+.auth-card h2 {
+  margin-bottom: 10px;
+  color: #222;
+  font-weight: 700;
+}
+
+.auth-card p {
+  margin-bottom: 25px;
+  color: #666;
+  font-size: 0.95rem;
+}
+
+/* Google Button */
+.btn-google {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #dadce0;
+  border-radius: 6px;
+  font-size: 0.95rem;
+  font-weight: 500;
+  color: #3c4043;
+  background: #fff;
+  cursor: pointer;
+  transition: all 0.25s ease;
+}
+
+.btn-google img {
+  width: 20px;
+  height: 20px;
+}
+
+.btn-google:hover {
+  background: #f9f9f9;
+  box-shadow: 0 3px 10px rgba(0,0,0,0.08);
+}
+
+/* Form */
+.auth-form {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  margin-top: 25px;
+}
+
+.auth-form input {
+  padding: 12px;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  outline: none;
+  font-size: 0.95rem;
+  transition: border-color 0.25s, box-shadow 0.25s;
+}
+
+.auth-form input:focus {
+  border-color: #ff6a00; /* Avaloria orange */
+  box-shadow: 0 0 6px rgba(255, 106, 0, 0.3);
+}
+
+/* Primary Button */
+.btn-primary {
+  background: #ff6a00; /* Avaloria orange */
+  color: #fff;
+  margin: 8px;
+  padding: 12px;
+  border: none;
+  border-radius: 6px;
+  font-size: 0.95rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.25s, transform 0.15s;
+}
+
+.btn-primary:hover {
+  background: #e65c00;
+  transform: translateY(-2px);
+}
+
+/* Outline Button */
+.btn-outline {
+  margin-top: 20px;
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #ff6a00;
+  background: #fff;
+  color: #ff6a00;
+  border-radius: 6px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.25s;
+}
+
+.btn-outline:hover {
+  background: #ff6a00;
+  color: #fff;
+  box-shadow: 0 3px 10px rgba(255, 106, 0, 0.25);
+}
+
+/* Close Button */
+.close-btn {
+  position: absolute;
+  top: 18px;
+  right: 22px;
+  background: transparent;
+  border: none;
+  font-size: 1.6rem;
+  font-weight: bold;
+  color: #666;
+  cursor: pointer;
+  transition: color 0.3s ease, transform 0.2s;
+}
+
+.close-btn:hover {
+  color: #ff6a00; /* Avaloria orange */
+  transform: scale(1.2);
+}
+
+.auth-card {
+  position: relative; /* so that close-btn stays inside card */
+}
+
+
+    </style>
+
+<div class="auth-wrapper">
+  <div class="auth-card">
+    <!-- Close Button -->
+    <button class="close-btn" onclick="window.location.href='index.html'">&times;</button>
+
+    <h2>Welcome to Avaloria</h2>
+    <p>Sign up or Sign in to continue</p>
+
+
+      <div class="auth-container">
+        <!-- Google Button -->
+        <button id="googleSignInBtn" class="btn-google">
+          <img src="https://www.svgrepo.com/show/355037/google.svg" alt="Google" />
+          Sign in with Google
+        </button>
+
+        <!-- Email Form -->
+        <form id="emailAuthForm" class="auth-form">
+          <input type="email" id="emailInput" placeholder="Enter your email" required />
+          <input type="password" id="passwordInput" placeholder="Enter your password" required />
+          <button type="submit" class="btn-primary">Sign Up / Sign In</button>
+        </form>
+
+        <!-- Sign out -->
+        <button id="signOutBtn" class="btn-outline" style="display:none;">Sign Out</button>
+      </div>
+    </div>
+  </div>
+
+  <script type="module" src="auth.js"></script>
+</body>
+</html>
