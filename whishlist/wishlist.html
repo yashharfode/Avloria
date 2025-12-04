@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Avaloria - Wishlist</title>
+  <link rel="stylesheet" href="../style.css">
+  <link rel="stylesheet" href="whishlist.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+  <!-- Navbar -->
+
+  <nav class="navbar">
+    <a href="../index.html" class="logo"><i class="fas fa-globe-americas"></i> Avaloria</a>
+    <a href="../index.html" class="details-btn">Back to Home</a>
+  </nav>
+
+  <!-- Wishlist Grid -->
+  <main class="wishlist-container">
+    <h1 style="text-align:center;margin-bottom:30px;">My Wishlist <i class="fas fa-heart" style="color:#ff6a00;"></i></h1>
+    <div id="emptyMsg" class="empty-msg" style="display:none;">Your wishlist is empty. Start adding your favorite places!</div>
+    <div class="wishlist-grid" id="wishlistGrid"></div>
+  </main>
+
+  <script>
+    // --- Add/Remove Wishlist Logic (shared with main site) ---
+    function getWishlist() {
+      try {
+        return JSON.parse(localStorage.getItem('avaloria_wishlist')) || [];
+      } catch { return []; }
+    }
+    function setWishlist(arr) {
+      localStorage.setItem('avaloria_wishlist', JSON.stringify(arr));
+    }
+    function removeFromWishlist(id) {
+      let list = getWishlist();
+      list = list.filter(pid => pid !== id);
+      setWishlist(list);
+      renderWishlist();
+    }
+    // --- Render Wishlist Cards ---
+    async function renderWishlist() {
+      const wishlistGrid = document.getElementById("wishlistGrid");
+      const emptyMsg = document.getElementById("emptyMsg");
+      wishlistGrid.innerHTML = '';
+      const ids = getWishlist();
+      if (!ids.length) {
+        emptyMsg.style.display = "block";
+        return;
+      }
+      emptyMsg.style.display = "none";
+      // Fetch all places
+      let places = [];
+      try {
+        const res = await fetch('../places.json');
+        places = await res.json();
+      } catch {
+        wishlistGrid.innerHTML = '<p style="color:red">Could not load places data.</p>';
+        return;
+      }
+      // Filter only wishlist places
+      const wishPlaces = places.filter(p => ids.includes(p.id));
+      if (!wishPlaces.length) {
+        emptyMsg.style.display = "block";
+        return;
+      }
+      wishPlaces.forEach(place => {
+        const card = document.createElement("div");
+        card.className = "wishlist-card";
+        card.innerHTML = `
+          <img src="${place.images && place.images.length ? place.images[0] : ''}" alt="${place.title}">
+          <div class="card-body">
+            <h3>${place.title}</h3>
+            <p>${place.district || "Madhya Pradesh"}</p>
+            <a href="../place.html?id=${encodeURIComponent(place.id)}" class="details-btn">View Details</a>
+            <button class="details-btn remove-btn" data-id="${place.id}" style="background:#fff;color:#ff6a00;border:1px solid #ff6a00;margin-left:10px;"><i class="fas fa-trash"></i> Remove</button>
+          </div>
+        `;
+        wishlistGrid.appendChild(card);
+      });
+      // Remove button listeners
+      document.querySelectorAll('.remove-btn').forEach(btn => {
+        btn.addEventListener('click', function() {
+          const id = this.getAttribute('data-id');
+          removeFromWishlist(id);
+        });
+      });
+    }
+    // --- Initial Render ---
+    document.addEventListener('DOMContentLoaded', renderWishlist);
+  </script>
+</body>
+</html>
